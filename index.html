@@ -613,14 +613,12 @@
             <p style="font-size: 18px; font-weight: 700; margin-bottom: 6px; color: var(--text-primary);">Download the Pitch Deck</p>
             <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">Fill in your details to access the full investor deck.</p>
             <form id="deckForm" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px;">
-                <div style="display: flex; gap: 10px;">
-                    <input type="text" id="investorFirstName" name="firstName" required placeholder="First name"
-                        style="flex: 1; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-secondary); color: var(--text-primary); font-size: 15px; outline: none; font-family: inherit; box-sizing: border-box;"
-                        onfocus="this.style.borderColor='var(--sand)'" onblur="this.style.borderColor='var(--border)'" />
-                    <input type="text" id="investorLastName" name="lastName" required placeholder="Last name"
-                        style="flex: 1; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-secondary); color: var(--text-primary); font-size: 15px; outline: none; font-family: inherit; box-sizing: border-box;"
-                        onfocus="this.style.borderColor='var(--sand)'" onblur="this.style.borderColor='var(--border)'" />
-                </div>
+                <input type="text" id="investorFirstName" name="firstName" required placeholder="First name"
+                    style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-secondary); color: var(--text-primary); font-size: 15px; outline: none; font-family: inherit; box-sizing: border-box;"
+                    onfocus="this.style.borderColor='var(--sand)'" onblur="this.style.borderColor='var(--border)'" />
+                <input type="text" id="investorLastName" name="lastName" required placeholder="Last name"
+                    style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-secondary); color: var(--text-primary); font-size: 15px; outline: none; font-family: inherit; box-sizing: border-box;"
+                    onfocus="this.style.borderColor='var(--sand)'" onblur="this.style.borderColor='var(--border)'" />
                 <input type="text" id="investorCompany" name="company" required placeholder="Company / Fund"
                     style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-secondary); color: var(--text-primary); font-size: 15px; outline: none; font-family: inherit; box-sizing: border-box;"
                     onfocus="this.style.borderColor='var(--sand)'" onblur="this.style.borderColor='var(--border)'" />
