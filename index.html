@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tigremt Mining — Investor Teaser</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #061929; --bg-secondary: #0a1e2e; --bg-card: #0c2337; --bg-lighter: #0d2a3f;
+            --text-primary: #f0f2f2; --text-secondary: #8a9dad;
+            --accent: #DF6637; --accent-hover: #e87a4d; --brand-green: #00b773; --success: #00b773;
+            --warning: #ffc107; --danger: #ff4757; --border: #122a3f;
+            --sand: #d4a853; --sand-light: #e8c87a; --rose: #e8739a; --rose-light: #f5a0b8;
+            --gradient-green: linear-gradient(135deg, #00b773 0%, #00d68f 100%);
+            --gradient-orange: linear-gradient(135deg, #DF6637 0%, #e87a4d 100%);
+            --gradient-sand: linear-gradient(135deg, #d4a853 0%, #e8c87a 100%);
+            --gradient-rose: linear-gradient(135deg, #e8739a 0%, #f5a0b8 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
+        body::before { content: ''; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(0,183,115,0.10) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+        body::after { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(6,25,41,0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 1000; border-bottom: 1px solid var(--border); }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; padding: 14px 32px; max-width: 1200px; margin: 0 auto; }
+        .nav-logo { display: flex; align-items: center; gap: 12px; font-weight: 900; font-size: 18px; }
+        .nav-right { display: flex; align-items: center; gap: 16px; }
+        .slide-counter { font-size: 13px; color: var(--text-secondary); font-weight: 600; font-variant-numeric: tabular-nums; }
+        .nav-links { display: flex; gap: 4px; align-items: center; overflow-x: auto; max-width: 700px; scrollbar-width: none; }
+        .nav-links::-webkit-scrollbar { display: none; }
+        .nav-link { font-size: 11px; font-weight: 600; color: var(--text-secondary); cursor: pointer; transition: all 0.25s ease; white-space: nowrap; padding: 4px 8px; border-radius: 6px; text-decoration: none; flex-shrink: 0; }
+        .nav-link:hover { color: var(--brand-green); }
+        .nav-link.active { color: var(--brand-green); background: rgba(0,183,115,0.1); }
+
+        .slide { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 80px 32px 40px; position: relative; scroll-snap-align: start; z-index: 1; }
+        .slide-inner { max-width: 1100px; width: 100%; }
+        .slide-number { font-size: 11px; font-weight: 700; color: var(--text-secondary); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; opacity: 0.6; }
+        .slide-header { margin-bottom: 40px; }
+        .slide-badge { display: inline-block; background: rgba(0,183,115,0.12); color: var(--brand-green); font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; }
+        .slide-badge.orange { background: rgba(223,102,55,0.12); color: var(--accent); }
+        .slide-badge.sand { background: rgba(212,168,83,0.12); color: var(--sand); }
+        .slide-badge.rose { background: rgba(232,115,154,0.12); color: var(--rose); }
+        .slide-title { font-size: clamp(28px, 4vw, 44px); font-weight: 900; line-height: 1.15; margin-bottom: 16px; }
+        .slide-title span { background: var(--gradient-green); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .slide-title .sand-gradient { background: var(--gradient-sand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .slide-title .rose-gradient { background: var(--gradient-rose); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .slide-subtitle { font-size: 17px; color: var(--text-secondary); max-width: 700px; line-height: 1.7; }
+
+        .glass-card { background: rgba(12,35,55,0.55); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(0,183,115,0.2); border-radius: 16px; padding: 28px; transition: all 0.3s ease; box-shadow: 0 4px 16px rgba(6,25,41,0.3), inset 0 1px 0 rgba(255,255,255,0.05); }
+        .glass-card:hover { transform: translateY(-2px); border-color: rgba(0,183,115,0.4); }
+        .glass-card.sand-border { border-color: rgba(212,168,83,0.2); }
+        .glass-card.sand-border:hover { border-color: rgba(212,168,83,0.4); }
+        .glass-card.rose-border { border-color: rgba(232,115,154,0.2); }
+        .glass-card.rose-border:hover { border-color: rgba(232,115,154,0.4); }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+        .stat-value { font-size: 36px; font-weight: 900; color: var(--brand-green); line-height: 1; margin-bottom: 6px; }
+        .stat-value.sand { color: var(--sand); }
+        .stat-value.rose { color: var(--rose); }
+        .stat-label { font-size: 13px; color: var(--text-secondary); font-weight: 500; }
+
+        .icon-box { width: 44px; height: 44px; background: rgba(0,183,115,0.12); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; flex-shrink: 0; }
+        .icon-box.orange { background: rgba(223,102,55,0.12); }
+        .icon-box.sand { background: rgba(212,168,83,0.12); }
+        .icon-box.rose { background: rgba(232,115,154,0.12); }
+
+        .tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+        .tag-green { background: rgba(0,183,115,0.15); color: var(--brand-green); }
+        .tag-orange { background: rgba(223,102,55,0.15); color: var(--accent); }
+        .tag-yellow { background: rgba(255,193,7,0.15); color: var(--warning); }
+        .tag-sand { background: rgba(212,168,83,0.15); color: var(--sand); }
+        .tag-red { background: rgba(255,71,87,0.15); color: var(--danger); }
+
+        .data-table { width: 100%; border-collapse: separate; border-spacing: 0 4px; font-size: 14px; }
+        .data-table thead th { padding: 10px 14px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); text-align: left; border-bottom: 1px solid var(--border); }
+        .data-table tbody tr { background: rgba(12,35,55,0.4); transition: background 0.2s ease; }
+        .data-table tbody tr:hover { background: rgba(12,35,55,0.7); }
+        .data-table td { padding: 12px 14px; vertical-align: middle; }
+        .data-table td:first-child { border-radius: 8px 0 0 8px; }
+        .data-table td:last-child { border-radius: 0 8px 8px 0; }
+        .data-table .row-highlight { background: rgba(0,183,115,0.08); }
+        .data-table .total-row { background: rgba(212,168,83,0.08); }
+        .data-table .total-row td { border-top: 2px solid var(--sand); font-weight: 700; color: var(--sand-light); }
+
+        .flow { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: nowrap; }
+        .flow-step { background: rgba(12,35,55,0.55); backdrop-filter: blur(16px); border: 1px solid rgba(0,183,115,0.2); border-radius: 14px; padding: 20px 24px; text-align: center; min-width: 140px; transition: all 0.3s ease; }
+        .flow-step:hover { border-color: rgba(0,183,115,0.4); transform: translateY(-2px); }
+        .flow-step .step-icon { font-size: 1.8rem; margin-bottom: 8px; }
+        .flow-step .step-title { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+        .flow-step .step-desc { font-size: 12px; color: var(--text-secondary); }
+        .flow-arrow { padding: 0 8px; flex-shrink: 0; }
+
+        .highlight-box { background: linear-gradient(135deg, rgba(0,183,115,0.08) 0%, rgba(12,35,55,0.6) 100%); border: 2px solid rgba(0,183,115,0.3); border-radius: 20px; padding: 32px; text-align: center; }
+        .highlight-box.sand { background: linear-gradient(135deg, rgba(212,168,83,0.08) 0%, rgba(12,35,55,0.6) 100%); border-color: rgba(212,168,83,0.3); }
+        .big-number { font-size: 56px; font-weight: 900; color: var(--brand-green); line-height: 1; text-shadow: 0 0 40px rgba(0,183,115,0.2); }
+        .big-number.sand { color: var(--sand); text-shadow: 0 0 40px rgba(212,168,83,0.2); }
+
+        .control-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .control-card { backdrop-filter: blur(16px); border-radius: 16px; padding: 32px; }
+        .control-card.no-control { background: rgba(255,71,87,0.06); border: 2px solid rgba(255,71,87,0.2); }
+        .control-card.yes-control { background: rgba(0,183,115,0.06); border: 2px solid rgba(0,183,115,0.2); }
+        .control-title { font-size: 16px; font-weight: 800; margin-bottom: 16px; text-align: center; }
+        .control-title.no-control { color: var(--danger); }
+        .control-title.yes-control { color: var(--brand-green); }
+        .control-list { list-style: none; padding: 0; }
+        .control-item { display: flex; align-items: flex-start; margin-bottom: 12px; font-size: 14px; line-height: 1.5; }
+        .control-icon { margin-right: 12px; margin-top: 2px; flex-shrink: 0; }
+
+        .investment-options { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 32px 0; }
+        .investment-card { background: rgba(12,35,55,0.55); border: 2px solid rgba(0,183,115,0.3); border-radius: 16px; padding: 32px; text-align: center; transition: all 0.3s ease; }
+        .investment-card:hover { border-color: rgba(0,183,115,0.5); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,183,115,0.2); }
+        .investment-title { font-size: 24px; font-weight: 900; color: var(--brand-green); margin-bottom: 20px; }
+        .investment-details { list-style: none; padding: 0; }
+        .investment-details li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(18,42,63,0.5); font-size: 14px; }
+        .investment-details li:last-child { border-bottom: none; }
+        .investment-key { color: var(--text-secondary); font-weight: 500; }
+        .investment-value { color: var(--text-primary); font-weight: 700; }
+
+        .cta-box { text-align: center; padding: 60px 40px; }
+        .cta-button { display: inline-block; background: var(--gradient-orange); color: #fff; font-size: 16px; font-weight: 700; padding: 18px 48px; border-radius: 50px; text-decoration: none; transition: all 0.3s ease; }
+        .cta-button:hover { transform: scale(1.05); box-shadow: 0 16px 40px rgba(223,102,55,0.3); }
+
+        .slide-footer { position: absolute; bottom: 24px; left: 32px; right: 32px; display: flex; justify-content: space-between; font-size: 11px; color: var(--text-secondary); opacity: 0.5; }
+
+        .side-menu { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 999; display: flex; flex-direction: column; gap: 2px; padding: 8px; }
+        .side-menu-item { display: flex; align-items: center; cursor: pointer; text-decoration: none; position: relative; height: 28px; }
+        .side-menu-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(138,157,173,0.3); border: 2px solid rgba(138,157,173,0.2); flex-shrink: 0; transition: all 0.3s ease; position: relative; z-index: 2; }
+        .side-menu-item:hover .side-menu-dot { background: rgba(0,183,115,0.5); transform: scale(1.3); }
+        .side-menu-item.active .side-menu-dot { background: var(--brand-green); border-color: var(--brand-green); box-shadow: 0 0 8px rgba(0,183,115,0.5); transform: scale(1.3); }
+        .side-menu-label { position: absolute; left: 24px; white-space: nowrap; background: rgba(6,25,41,0.90); backdrop-filter: blur(12px); border: 1px solid rgba(18,42,63,0.6); border-radius: 6px; padding: 4px 10px; font-size: 11px; font-weight: 600; color: var(--text-secondary); }
+        .side-menu-item:hover .side-menu-label { color: var(--brand-green); }
+        .side-menu-item.active .side-menu-label { color: var(--brand-green); border-color: rgba(0,183,115,0.3); }
+        .side-menu-line { position: absolute; left: 12px; top: 16px; bottom: 16px; width: 2px; background: rgba(138,157,173,0.1); z-index: 1; pointer-events: none; }
+        .side-menu-progress { position: absolute; top: 0; left: 0; width: 100%; background: var(--brand-green); border-radius: 1px; transition: height 0.3s ease; opacity: 0.6; }
+
+        .quote-block { border-left: 3px solid var(--brand-green); padding-left: 20px; font-style: italic; color: var(--text-secondary); font-size: 16px; line-height: 1.7; margin: 24px 0; }
+
+        .sensitivity-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+        .sens-item { background: rgba(12,35,55,0.55); backdrop-filter: blur(16px); border: 1px solid rgba(0,183,115,0.15); border-radius: 12px; padding: 16px; text-align: center; transition: all 0.3s ease; }
+        .sens-item:hover { transform: translateY(-2px); border-color: rgba(0,183,115,0.3); }
+        .sens-item.highlighted { border-color: var(--sand); background: rgba(212,168,83,0.08); }
+        .sens-price { font-size: 14px; color: var(--text-secondary); margin-bottom: 4px; font-weight: 600; }
+        .sens-total { font-size: 20px; font-weight: 900; margin-bottom: 2px; }
+        .sens-profit { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+        .sens-roi { font-size: 12px; color: var(--text-secondary); }
+        .sens-total.pos { color: var(--brand-green); }
+
+        @media (max-width: 900px) { .grid-2,.grid-3,.grid-4 { grid-template-columns: 1fr; } .slide { padding: 80px 16px 32px; } .stat-value { font-size: 28px; } .big-number { font-size: 40px; } .flow { flex-wrap: wrap; gap: 8px; } .sensitivity-grid { grid-template-columns: 1fr 1fr; } .control-grid,.investment-options { grid-template-columns: 1fr; } }
+        @media (max-width: 600px) { .nav-links { display: none; } .slide { padding: 70px 12px 24px; } .stat-value { font-size: 22px; } .big-number { font-size: 28px; } .grid-4 { grid-template-columns: 1fr 1fr; } .side-menu { display: none; } .flow { flex-direction: column; } .flow-arrow { transform: rotate(90deg); } }
+        @media print { .slide { page-break-after: always; } nav,.side-menu { display: none; } body::before,body::after { display: none; } }
+    </style>
+</head>
+<body>
+
+<nav><div class="nav-content">
+    <div class="nav-logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d4a853" stroke-width="2"><path d="M3 21V7l4-4h10l4 4v14H3z"/><path d="M9 21v-6h6v6"/><path d="M9 7h1M14 7h1"/><path d="M9 11h1M14 11h1"/></svg> TIGREMT MINING</div>
+    <div class="nav-right">
+        <span class="slide-counter" id="slideCounter">1 / 7</span>
+        <div class="nav-links" id="navLinks">
+            <a class="nav-link active" data-slide="0" href="#s1">Cover</a><a class="nav-link" data-slide="1" href="#s2">Concept</a><a class="nav-link" data-slide="2" href="#s3">Advantage</a><a class="nav-link" data-slide="3" href="#s4">Numbers</a><a class="nav-link" data-slide="4" href="#s5">Mine vs Buy</a><a class="nav-link" data-slide="5" href="#s6">Impact</a><a class="nav-link" data-slide="6" href="#s7">Next Steps</a>
+        </div>
+    </div>
+</div></nav>
+
+<div class="side-menu" id="sideMenu"><div class="side-menu-line" id="sideMenuLine"><div class="side-menu-progress" id="sideMenuProgress"></div></div>
+<a href="#s1" class="side-menu-item active" data-slide="0"><div class="side-menu-dot"></div><div class="side-menu-label">Cover</div></a>
+<a href="#s2" class="side-menu-item" data-slide="1"><div class="side-menu-dot"></div><div class="side-menu-label">01 Concept</div></a>
+<a href="#s3" class="side-menu-item" data-slide="2"><div class="side-menu-dot"></div><div class="side-menu-label">02 Advantage</div></a>
+<a href="#s4" class="side-menu-item" data-slide="3"><div class="side-menu-dot"></div><div class="side-menu-label">03 Numbers</div></a>
+<a href="#s5" class="side-menu-item" data-slide="4"><div class="side-menu-dot"></div><div class="side-menu-label">04 Mine vs Buy</div></a>
+<a href="#s6" class="side-menu-item" data-slide="5"><div class="side-menu-dot"></div><div class="side-menu-label">05 Impact</div></a>
+<a href="#s7" class="side-menu-item" data-slide="6"><div class="side-menu-dot"></div><div class="side-menu-label">06 Next Steps</div></a>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 1 — COVER -->
+<!-- ============================================================ -->
+<section class="slide" id="s1" style="background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);">
+<div class="slide-inner" style="text-align: center;">
+    <div style="margin-bottom: 16px;">
+        <span style="font-size: 12px; color: var(--text-secondary); letter-spacing: 1px;">
+            <svg width="16" height="12" viewBox="0 0 16 12" style="vertical-align: middle; margin-right: 4px;"><rect width="16" height="12" rx="1" fill="#c1272d"/><rect y="4" width="16" height="4" fill="#006233"/><polygon points="8,3 8.76,5.35 11.24,5.35 9.24,6.85 10,9.2 8,7.7 6,9.2 6.76,6.85 4.76,5.35 7.24,5.35" fill="#006233"/></svg>
+            Tinghir, Atlas Mountains -- Morocco
+        </span>
+    </div>
+    <div style="margin-bottom: 24px;">
+        <span class="slide-badge sand" style="font-size: 13px; padding: 8px 20px; letter-spacing: 2px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 6px;"><path d="M3 21V7l4-4h10l4 4v14H3z"/><path d="M9 21v-6h6v6"/></svg>
+            TIGREMT MINING
+        </span>
+    </div>
+    <h1 style="font-size: clamp(32px, 5vw, 56px); font-weight: 900; line-height: 1.15; margin-bottom: 20px;">
+        Own the Mine, <span style="background: var(--gradient-green); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Not the Ore</span>
+    </h1>
+    <p style="font-size: 20px; color: var(--text-secondary); margin-bottom: 8px;">A solar-powered Bitcoin mine in Morocco's Atlas Mountains</p>
+    <p style="font-size: 18px; color: var(--sand); font-weight: 700; margin-bottom: 36px;">Starting from $1.6M</p>
+    <div class="grid-3" style="max-width: 600px; margin: 0 auto 40px;">
+        <div class="glass-card sand-border" style="text-align: center; padding: 18px 12px;">
+            <div style="margin-bottom: 8px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d4a853" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
+            <div style="font-size: 14px; font-weight: 700; color: var(--sand);">100% Solar</div>
+        </div>
+        <div class="glass-card" style="text-align: center; padding: 18px 12px;">
+            <div style="margin-bottom: 8px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00b773" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+            <div style="font-size: 14px; font-weight: 700; color: var(--brand-green);">$0 Energy Cost</div>
+        </div>
+        <div class="glass-card sand-border" style="text-align: center; padding: 18px 12px;">
+            <div style="margin-bottom: 8px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d4a853" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
+            <div style="font-size: 14px; font-weight: 700; color: var(--sand);">106 BTC / 20 years</div>
+        </div>
+    </div>
+    <div style="margin-top: 24px; font-size: 14px; color: var(--text-secondary);">A project by Startmining x Shamsiyah x Ait Kassi</div>
+    <div style="margin-top: 16px; font-size: 11px; color: var(--text-secondary); opacity: 0.5; letter-spacing: 3px; text-transform: uppercase;">Private &amp; Confidential</div>
+</div>
+<div class="slide-footer"><span>Tigremt Mining -- Startmining x Shamsiyah x Ait Kassi</span><span>Investor Teaser 2026</span></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 2 — THE CONCEPT -->
+<!-- ============================================================ -->
+<section class="slide" id="s2">
+<div class="slide-inner">
+    <div class="slide-number">01 -- The Concept</div>
+    <div class="slide-header">
+        <span class="slide-badge sand">How It Works</span>
+        <h2 class="slide-title">Sun In. <span>Bitcoin Out.</span></h2>
+    </div>
+
+    <!-- Visual Flow -->
+    <div class="glass-card" style="padding: 28px; margin-bottom: 32px;">
+        <div class="flow">
+            <div class="flow-step" style="border-color: rgba(212,168,83,0.3);">
+                <div class="step-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#d4a853" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
+                <div class="step-title" style="color: var(--sand);">Sun</div>
+                <div class="step-desc">Moroccan desert</div>
+            </div>
+            <div class="flow-arrow"><svg width="32" height="14" viewBox="0 0 32 16" fill="none" stroke="#d4a853" stroke-width="2"><path d="M2 8h24"/><path d="M22 4l4 4-4 4"/></svg></div>
+            <div class="flow-step" style="border-color: rgba(212,168,83,0.3);">
+                <div class="step-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#d4a853" stroke-width="2"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8V6M10 8V6M14 8V6M18 8V6"/><path d="M2 12h20"/></svg></div>
+                <div class="step-title" style="color: var(--sand);">Solar Panels</div>
+                <div class="step-desc">10MW farm</div>
+            </div>
+            <div class="flow-arrow"><svg width="32" height="14" viewBox="0 0 32 16" fill="none" stroke="#00b773" stroke-width="2"><path d="M2 8h24"/><path d="M22 4l4 4-4 4"/></svg></div>
+            <div class="flow-step" style="border-color: rgba(0,183,115,0.3);">
+                <div class="step-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00b773" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 12h4M9 15h5"/></svg></div>
+                <div class="step-title" style="color: var(--brand-green);">Bitcoin Mining</div>
+                <div class="step-desc">Zero energy cost</div>
+            </div>
+            <div class="flow-arrow"><svg width="32" height="14" viewBox="0 0 32 16" fill="none" stroke="#00b773" stroke-width="2"><path d="M2 8h24"/><path d="M22 4l4 4-4 4"/></svg></div>
+            <div class="flow-step" style="border-color: rgba(0,183,115,0.4); background: rgba(0,183,115,0.08);">
+                <div class="step-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00b773" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+                <div class="step-title" style="color: var(--brand-green);">Revenue</div>
+                <div class="step-desc">Sell or hold BTC</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- One sentence -->
+    <div class="highlight-box" style="margin-bottom: 32px; padding: 24px;">
+        <p style="font-size: 17px; color: var(--text-secondary); line-height: 1.7; margin: 0;">We build a solar farm in the Moroccan desert. The energy powers Bitcoin miners. The Bitcoin is sold or held. <strong style="color: var(--brand-green);">Zero energy cost. Forever.</strong></p>
+    </div>
+
+    <!-- 3 stat cards -->
+    <div class="grid-3">
+        <div class="glass-card sand-border" style="text-align: center; padding: 28px;">
+            <div class="stat-value sand" style="font-size: 42px;">10MW</div>
+            <div class="stat-label">Solar farm</div>
+        </div>
+        <div class="glass-card" style="text-align: center; padding: 28px;">
+            <div class="stat-value" style="font-size: 42px;">$0/kWh</div>
+            <div class="stat-label">Energy cost</div>
+        </div>
+        <div class="glass-card sand-border" style="text-align: center; padding: 28px;">
+            <div class="stat-value sand" style="font-size: 42px;">25 yrs</div>
+            <div class="stat-label">Infrastructure lifespan</div>
+        </div>
+    </div>
+</div>
+<div class="slide-footer"><span>Tigremt Mining -- Startmining x Shamsiyah x Ait Kassi</span><span>Investor Teaser 2026</span></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 3 — WHY IT WORKS -->
+<!-- ============================================================ -->
+<section class="slide" id="s3">
+<div class="slide-inner">
+    <div class="slide-number">02 -- Why It Works</div>
+    <div class="slide-header">
+        <span class="slide-badge">Competitive Edge</span>
+        <h2 class="slide-title">The <span>Unfair Advantage</span></h2>
+    </div>
+
+    <div class="grid-3">
+        <!-- Card 1: $0 Energy -->
+        <div class="glass-card sand-border" style="padding: 32px;">
+            <div class="icon-box sand">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d4a853" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <h4 style="font-weight: 800; margin-bottom: 12px; color: var(--sand); font-size: 20px;">$0 Energy</h4>
+            <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">While competitors pay <strong style="color: var(--text-primary);">$300K-$500K per year</strong> in electricity per MW, Tigremt pays nothing. We own the energy source.</p>
+        </div>
+
+        <!-- Card 2: Always Profitable -->
+        <div class="glass-card" style="padding: 32px;">
+            <div class="icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00b773" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h4 style="font-weight: 800; margin-bottom: 12px; color: var(--brand-green); font-size: 20px;">Always Profitable</h4>
+            <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">When Bitcoin drops, expensive miners shut down. We keep mining -- at zero cost. <strong style="color: var(--text-primary);">Less competition = more Bitcoin for us.</strong></p>
+        </div>
+
+        <!-- Card 3: Built-in Exit -->
+        <div class="glass-card" style="padding: 32px; border-color: rgba(223,102,55,0.2);">
+            <div class="icon-box orange">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#DF6637" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+            </div>
+            <h4 style="font-weight: 800; margin-bottom: 12px; color: var(--accent); font-size: 20px;">Built-in Exit</h4>
+            <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">50% of investment goes into solar infrastructure with 25-year lifespan and <strong style="color: var(--text-primary);">$5-7M residual value</strong>. Even if Bitcoin goes to zero, you own a solar farm.</p>
+        </div>
+    </div>
+</div>
+<div class="slide-footer"><span>Tigremt Mining -- Startmining x Shamsiyah x Ait Kassi</span><span>Investor Teaser 2026</span></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 4 — THE NUMBERS -->
+<!-- ============================================================ -->
+<section class="slide" id="s4">
+<div class="slide-inner">
+    <div class="slide-number">03 -- The Numbers</div>
+    <div class="slide-header">
+        <span class="slide-badge sand">Returns</span>
+        <h2 class="slide-title">What <span class="sand-gradient">$15.6M</span> Buys You</h2>
+    </div>
+
+    <div class="grid-2" style="margin-bottom: 32px;">
+        <!-- Left: Big number -->
+        <div class="highlight-box sand" style="display: flex; flex-direction: column; justify-content: center;">
+            <div class="big-number sand" style="font-size: 64px; margin-bottom: 12px;">106 BTC</div>
+            <p style="font-size: 18px; color: var(--text-secondary); margin-bottom: 8px;">produced over 20 years</p>
+            <p style="font-size: 16px; color: var(--sand); font-weight: 700;">66 BTC in the first 6 years alone</p>
+        </div>
+
+        <!-- Right: Value at different BTC prices -->
+        <div class="glass-card sand-border" style="padding: 28px;">
+            <h4 style="font-weight: 800; margin-bottom: 20px; color: var(--sand); font-size: 16px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d4a853" stroke-width="2" style="vertical-align: middle; margin-right: 6px;"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                106 BTC + $6M Solar Value
+            </h4>
+            <div class="sensitivity-grid" style="grid-template-columns: 1fr;">
+                <div class="sens-item" style="display: flex; justify-content: space-between; align-items: center; padding: 14px 20px;">
+                    <span style="font-size: 15px; color: var(--text-secondary); font-weight: 600;">If BTC = $100K</span>
+                    <span style="font-size: 20px; font-weight: 900; color: var(--brand-green);">$22.6M</span>
+                </div>
+                <div class="sens-item highlighted" style="display: flex; justify-content: space-between; align-items: center; padding: 14px 20px;">
+                    <span style="font-size: 15px; color: var(--text-secondary); font-weight: 600;">If BTC = $200K</span>
+                    <span style="font-size: 20px; font-weight: 900; color: var(--sand);">$33.2M</span>
+                </div>
+                <div class="sens-item" style="display: flex; justify-content: space-between; align-items: center; padding: 14px 20px;">
+                    <span style="font-size: 15px; color: var(--text-secondary); font-weight: 600;">If BTC = $500K</span>
+                    <span style="font-size: 20px; font-weight: 900; color: var(--brand-green);">$65M</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breakeven -->
+    <div class="highlight-box" style="padding: 24px; margin-bottom: 16px;">
+        <p style="font-weight: 700; color: var(--brand-green); font-size: 18px; margin: 0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00b773" stroke-width="2" style="vertical-align: middle; margin-right: 8px;"><polyline points="20,6 9,17 4,12"/></svg>
+            Breakeven at ~$91K per Bitcoin -- below today's levels.
+        </p>
+    </div>
+
+    <p style="font-size: 12px; color: var(--text-secondary); text-align: center; opacity: 0.7;">Projections based on network share model with industry maturation from 10% to 2% annual growth. Solar residual valued at $5-7M.</p>
+</div>
+<div class="slide-footer"><span>Tigremt Mining -- Startmining x Shamsiyah x Ait Kassi</span><span>Investor Teaser 2026</span></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 5 — MINE vs BUY -->
+<!-- ============================================================ -->
+<section class="slide" id="s5">
+<div class="slide-inner">
+    <div class="slide-number">04 -- Mine vs Buy</div>
+    <div class="slide-header">
+        <span class="slide-badge orange">Comparison</span>
+        <h2 class="slide-title">Why Not Just <span>Buy Bitcoin?</span></h2>
+    </div>
+
+    <div class="control-grid" style="margin-bottom: 32px;">
+        <!-- Left: Buy Bitcoin -->
+        <div class="control-card no-control">
+            <div class="control-title no-control">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff4757" stroke-width="2" style="vertical-align: middle; margin-right: 6px;"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                Buy $15.6M of Bitcoin
+            </div>
+            <ul class="control-list">
+                <li class="control-item">
+                    <span class="control-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff4757" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span>
+                    <span>219 BTC today</span>
+                </li>
+                <li class="control-item">
+                    <span class="control-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff4757" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span>
+                    <span>If BTC goes to $0: <strong style="color: var(--danger);">you lose everything</strong></span>
+                </li>
+                <li class="control-item">
+                    <span class="control-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff4757" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span>
+                    <span>No physical asset</span>
+                </li>
+                <li class="control-item">
+                    <span class="control-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff4757" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span>
+                    <span>One-time bet on price</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Right: Invest in Tigremt -->
+        <div class="control-card yes-control">
+            <div class="control-title yes-control">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00b773" stroke-width="2" style="vertical-align: middle; margin-right: 6px;"><polyline points="20,6 9,17 4,12"/></svg>
+                Invest in Tigremt
+            </div>
+            <ul class="control-list">
+                <li class="control-item">
+                    <span class="control-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00b773" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg></span>
+                    <span>106 BTC produced over 20 years</span>
+                </li>
+                <li class="control-item">
+                    <span class="control-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00b773" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg></span>
+                    <span>If BTC goes to $0: <strong style="color: var(--brand-green);">you still own a $6M solar farm</strong></span>
+                </li>
+                <li class="control-item">
+                    <span class="control-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00b773" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg></span>
+                    <span>25-year physical infrastructure</span>
+                </li>
+                <li class="control-item">
+                    <span class="control-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00b773" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg></span>
+                    <span>Continuous production, no timing needed</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Quote -->
+    <div class="highlight-box" style="padding: 28px;">
+        <p style="font-weight: 600; color: var(--brand-green); font-size: 17px; line-height: 1.6; margin: 0;">
+            "Buying Bitcoin is a bet on price. Tigremt is a bet on infrastructure -- with Bitcoin as the first revenue stream."
+        </p>
+    </div>
+</div>
+<div class="slide-footer"><span>Tigremt Mining -- Startmining x Shamsiyah x Ait Kassi</span><span>Investor Teaser 2026</span></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 6 — IMPACT -->
+<!-- ============================================================ -->
+<section class="slide" id="s6">
+<div class="slide-inner">
+    <div class="slide-number">05 -- Impact</div>
+    <div class="slide-header">
+        <span class="slide-badge rose">Social & Environmental</span>
+        <h2 class="slide-title">More Than <span class="rose-gradient">Mining</span></h2>
+    </div>
+
+    <!-- Impact stats -->
+    <div class="grid-4" style="margin-bottom: 32px;">
+        <div class="glass-card rose-border" style="text-align: center; padding: 24px;">
+            <div style="margin-bottom: 10px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e8739a" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+            <div class="stat-value rose" style="font-size: 28px;">20+</div>
+            <div class="stat-label">Jobs Created</div>
+        </div>
+        <div class="glass-card" style="text-align: center; padding: 24px;">
+            <div style="margin-bottom: 10px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00b773" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
+            <div class="stat-value" style="font-size: 28px;">100%</div>
+            <div class="stat-label">Renewable</div>
+        </div>
+        <div class="glass-card sand-border" style="text-align: center; padding: 24px;">
+            <div style="margin-bottom: 10px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#d4a853" stroke-width="2"><path d="M2 22h20"/><path d="M6.4 15.8A6.59 6.59 0 014 10.5C4 6.36 7.58 3 12 3s8 3.36 8 7.5a6.59 6.59 0 01-2.4 5.3"/><path d="M12 3v4"/><path d="M8 15h8"/><path d="M9 19h6"/></svg></div>
+            <div class="stat-value sand" style="font-size: 28px;">~4,000t</div>
+            <div class="stat-label">CO2 Avoided</div>
+        </div>
+        <div class="glass-card rose-border" style="text-align: center; padding: 24px;">
+            <div style="margin-bottom: 10px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e8739a" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+            <div class="stat-value rose" style="font-size: 22px;">Community</div>
+            <div class="stat-label">Profit Sharing</div>
+        </div>
+    </div>
+
+    <!-- Dades Valley — Agrivoltaic Model -->
+    <div class="glass-card rose-border" style="margin-bottom: 24px; padding: 32px;">
+        <div style="display: flex; align-items: flex-start; gap: 20px;">
+            <div class="icon-box rose" style="flex-shrink: 0;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e8739a" stroke-width="2"><path d="M12 22c-4-3-8-7.5-8-12a8 8 0 1116 0c0 4.5-4 9-8 12z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+                <h4 style="font-weight: 800; margin-bottom: 12px; color: var(--rose);">The Dades Valley -- Untapped Potential</h4>
+                <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 12px;">The Dades Valley combines <strong style="color: var(--text-primary);">300+ days of sunshine</strong>, fertile land, and ancestral know-how in Rosa damascena and aromatic herbs. Yet faces water scarcity, desertification, and economic precarity.</p>
+                <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.8;">Tigremt's agrivoltaic model turns constraints into opportunities: solar panels create a <strong style="color: var(--text-primary);">favorable microclimate</strong> (partial shading, reduced evapotranspiration) protecting crops from extreme heat, while surplus energy is monetized via Bitcoin mining -- a revenue stream <strong style="color: var(--text-primary);">decorrelated from agricultural cycles</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Two pillars -->
+    <div class="grid-2" style="margin-bottom: 24px;">
+        <div class="glass-card sand-border" style="padding: 20px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d4a853" stroke-width="2"><path d="M2 22h20"/><path d="M12 3v4"/><path d="M8 15h8"/><path d="M9 19h6"/></svg>
+                <span style="font-size: 13px; font-weight: 700; color: var(--sand);">Permaculture + Data-Driven</span>
+            </div>
+            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;">Polyculture, rational water management, soil sensors & yield analytics. Ancestral know-how meets precision agriculture.</p>
+        </div>
+        <div class="glass-card rose-border" style="padding: 20px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e8739a" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>
+                <span style="font-size: 13px; font-weight: 700; color: var(--rose);">Community Redistribution</span>
+            </div>
+            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;">Profits shared with <strong style="color: var(--text-primary);">Association Amal Dades</strong> & <strong style="color: var(--text-primary);">Association des Oeuvres Sociales des Ait Kassi</strong>. Priority employment for rural women.</p>
+        </div>
+    </div>
+
+    <!-- Quote -->
+    <div class="quote-block" style="border-left-color: var(--rose);">
+        "A profitable model that drives social and environmental transformation -- designed for the region, by the region, for the benefit of the region."
+    </div>
+</div>
+<div class="slide-footer"><span>Tigremt Mining -- Startmining x Shamsiyah x Ait Kassi</span><span>Investor Teaser 2026</span></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 7 — NEXT STEPS -->
+<!-- ============================================================ -->
+<section class="slide" id="s7" style="background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);">
+<div class="slide-inner">
+    <div class="slide-number">06 -- Next Steps</div>
+    <div class="slide-header">
+        <span class="slide-badge sand">Investment</span>
+        <h2 class="slide-title">Enter the <span class="sand-gradient">Fortress</span></h2>
+    </div>
+
+    <!-- Fortress icon -->
+    <div style="text-align: center; margin-bottom: 32px;">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#d4a853" stroke-width="1.5">
+            <path d="M3 21V7l4-4h10l4 4v14H3z"/>
+            <path d="M9 21v-6h6v6"/>
+            <path d="M9 7h1M14 7h1"/>
+            <path d="M9 11h1M14 11h1"/>
+            <path d="M3 7h18"/>
+            <path d="M7 3v4M17 3v4"/>
+        </svg>
+    </div>
+
+    <!-- Two investment cards -->
+    <div class="investment-options">
+        <div class="investment-card" style="border-color: rgba(0,183,115,0.5); box-shadow: 0 0 20px rgba(0,183,115,0.15);">
+            <div class="investment-title">1MW Pilot</div>
+            <div style="font-size: 36px; font-weight: 900; color: var(--sand); margin-bottom: 16px;">$1.6M</div>
+            <p style="font-size: 15px; color: var(--text-secondary); margin-bottom: 20px;">Proof of concept, 6-month validation</p>
+            <ul class="investment-details">
+                <li><span class="investment-key">Timeline</span><span class="investment-value">Q3-Q4 2026</span></li>
+                <li><span class="investment-key">Validation</span><span class="investment-value">6-month proof period</span></li>
+                <li><span class="investment-key">Scalable to</span><span class="investment-value">Full 10MW</span></li>
+            </ul>
+        </div>
+        <div class="investment-card">
+            <div class="investment-title">Full 10MW</div>
+            <div style="font-size: 36px; font-weight: 900; color: var(--sand); margin-bottom: 16px;">$15.6M</div>
+            <p style="font-size: 15px; color: var(--text-secondary); margin-bottom: 20px;">Complete solar Bitcoin mining fortress</p>
+            <ul class="investment-details">
+                <li><span class="investment-key">Production</span><span class="investment-value">106 BTC / 20 years</span></li>
+                <li><span class="investment-key">Solar residual</span><span class="investment-value">$5-7M / 25 years</span></li>
+                <li><span class="investment-key">Breakeven</span><span class="investment-value">~$91K BTC</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Terms -->
+    <div class="glass-card" style="margin-bottom: 32px; padding: 24px;">
+        <div class="grid-4">
+            <div style="text-align: center; padding: 8px;">
+                <div style="margin-bottom: 8px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00b773" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
+                <div style="font-size: 14px; font-weight: 700; color: var(--brand-green);">SPV</div>
+                <div style="font-size: 12px; color: var(--text-secondary);">Dedicated vehicle</div>
+            </div>
+            <div style="text-align: center; padding: 8px;">
+                <div style="margin-bottom: 8px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4a853" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+                <div style="font-size: 14px; font-weight: 700; color: var(--sand);">Board Seat</div>
+                <div style="font-size: 12px; color: var(--text-secondary);">Investor governance</div>
+            </div>
+            <div style="text-align: center; padding: 8px;">
+                <div style="margin-bottom: 8px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00b773" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+                <div style="font-size: 14px; font-weight: 700; color: var(--brand-green);">Quarterly</div>
+                <div style="font-size: 12px; color: var(--text-secondary);">Reporting</div>
+            </div>
+            <div style="text-align: center; padding: 8px;">
+                <div style="margin-bottom: 8px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4a853" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                <div style="font-size: 14px; font-weight: 700; color: var(--sand);">25-Year</div>
+                <div style="font-size: 12px; color: var(--text-secondary);">Infrastructure</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box" style="padding: 40px;">
+        <a href="tigremt-mining-pitchdeck-2026.pdf" download class="cta-button" style="background: var(--gradient-sand); margin-bottom: 16px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download the Pitch Deck
+        </a>
+        <div style="margin-top: 12px;">
+            <a href="mailto:timothee@co-re.partners" class="cta-button">Enter the Fortress</a>
+        </div>
+        <div style="margin-top: 24px; font-size: 16px; color: var(--text-secondary);">
+            <strong style="color: var(--text-primary);">Timothee Badie</strong><br>
+            <a href="mailto:timothee@co-re.partners" style="color: var(--sand); text-decoration: none;">timothee@co-re.partners</a>
+        </div>
+    </div>
+
+    <div style="text-align: center; font-size: 11px; color: var(--text-secondary); opacity: 0.5; letter-spacing: 3px; text-transform: uppercase;">Private &amp; Confidential</div>
+</div>
+<div class="slide-footer"><span>Tigremt Mining -- Startmining x Shamsiyah x Ait Kassi</span><span>Investor Teaser 2026</span></div>
+</section>
+
+<script>
+let currentSlide = 0;
+const totalSlides = 7;
+
+function updateNavigation() {
+    document.getElementById('slideCounter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+    document.querySelectorAll('.nav-link').forEach((l, i) => l.classList.toggle('active', i === currentSlide));
+    document.querySelectorAll('.side-menu-item').forEach((m, i) => m.classList.toggle('active', i === currentSlide));
+    document.getElementById('sideMenuProgress').style.height = `${((currentSlide + 1) / totalSlides) * 100}%`;
+}
+
+document.querySelectorAll('.nav-link, .side-menu-item').forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        currentSlide = parseInt(link.dataset.slide);
+        updateNavigation();
+        document.getElementById(`s${currentSlide + 1}`).scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            currentSlide = parseInt(entry.target.id.replace('s', '')) - 1;
+            updateNavigation();
+        }
+    });
+}, { threshold: 0.5 });
+document.querySelectorAll('.slide').forEach(s => observer.observe(s));
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { if (currentSlide < totalSlides - 1) { currentSlide++; updateNavigation(); document.getElementById(`s${currentSlide + 1}`).scrollIntoView({ behavior: 'smooth' }); } }
+    else if (e.key === 'ArrowUp' || e.key === 'PageUp') { if (currentSlide > 0) { currentSlide--; updateNavigation(); document.getElementById(`s${currentSlide + 1}`).scrollIntoView({ behavior: 'smooth' }); } }
+});
+updateNavigation();
+</script>
+</body>
+</html>
