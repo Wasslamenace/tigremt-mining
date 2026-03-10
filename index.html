@@ -707,9 +707,9 @@ document.getElementById('deckForm').addEventListener('submit', async function(e)
         });
     } catch(err) { /* non-blocking */ }
 
-    // Also send a copy to Wassim
+    // Also send to Gaspard
     try {
-        await fetch('https://formsubmit.co/ajax/tallalwassim131@gmail.com', {
+        await fetch('https://formsubmit.co/ajax/gaspard@co-re.partners', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({
