@@ -612,13 +612,13 @@
         <div id="emailGate" style="max-width: 420px; margin: 0 auto;">
             <p style="font-size: 18px; font-weight: 700; margin-bottom: 6px; color: var(--text-primary);">Download the Pitch Deck</p>
             <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">Enter your email to receive the full investor deck.</p>
-            <form id="deckForm" style="display: flex; gap: 8px; margin-bottom: 12px;">
+            <form id="deckForm" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px;">
                 <input type="email" id="investorEmail" name="email" required placeholder="your@email.com"
-                    style="flex: 1; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-secondary); color: var(--text-primary); font-size: 15px; outline: none; font-family: inherit;"
+                    style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-secondary); color: var(--text-primary); font-size: 15px; outline: none; font-family: inherit; box-sizing: border-box;"
                     onfocus="this.style.borderColor='var(--sand)'" onblur="this.style.borderColor='var(--border)'" />
-                <button type="submit" class="cta-button" style="background: var(--gradient-sand); white-space: nowrap; padding: 14px 24px; border: none; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 700;">
+                <button type="submit" class="cta-button" style="background: var(--gradient-sand); width: 100%; padding: 14px 24px; border: none; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 700; border-radius: 10px;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: middle; margin-right: 6px;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Download
+                    Download the Pitch Deck
                 </button>
             </form>
             <p style="font-size: 11px; color: var(--text-secondary); opacity: 0.6;">No spam. Your email is shared with the Tigremt Mining team only.</p>
