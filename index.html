@@ -611,9 +611,20 @@
         <!-- Email gate form -->
         <div id="emailGate" style="max-width: 420px; margin: 0 auto;">
             <p style="font-size: 18px; font-weight: 700; margin-bottom: 6px; color: var(--text-primary);">Download the Pitch Deck</p>
-            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">Enter your email to receive the full investor deck.</p>
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">Fill in your details to access the full investor deck.</p>
             <form id="deckForm" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px;">
-                <input type="email" id="investorEmail" name="email" required placeholder="your@email.com"
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="investorFirstName" name="firstName" required placeholder="First name"
+                        style="flex: 1; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-secondary); color: var(--text-primary); font-size: 15px; outline: none; font-family: inherit; box-sizing: border-box;"
+                        onfocus="this.style.borderColor='var(--sand)'" onblur="this.style.borderColor='var(--border)'" />
+                    <input type="text" id="investorLastName" name="lastName" required placeholder="Last name"
+                        style="flex: 1; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-secondary); color: var(--text-primary); font-size: 15px; outline: none; font-family: inherit; box-sizing: border-box;"
+                        onfocus="this.style.borderColor='var(--sand)'" onblur="this.style.borderColor='var(--border)'" />
+                </div>
+                <input type="text" id="investorCompany" name="company" required placeholder="Company / Fund"
+                    style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-secondary); color: var(--text-primary); font-size: 15px; outline: none; font-family: inherit; box-sizing: border-box;"
+                    onfocus="this.style.borderColor='var(--sand)'" onblur="this.style.borderColor='var(--border)'" />
+                <input type="email" id="investorEmail" name="email" required placeholder="Professional email"
                     style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-secondary); color: var(--text-primary); font-size: 15px; outline: none; font-family: inherit; box-sizing: border-box;"
                     onfocus="this.style.borderColor='var(--sand)'" onblur="this.style.borderColor='var(--border)'" />
                 <button type="submit" class="cta-button" style="background: var(--gradient-sand); width: 100%; padding: 14px 24px; border: none; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 700; border-radius: 10px;">
@@ -621,7 +632,7 @@
                     Download the Pitch Deck
                 </button>
             </form>
-            <p style="font-size: 11px; color: var(--text-secondary); opacity: 0.6;">No spam. Your email is shared with the Tigremt Mining team only.</p>
+            <p style="font-size: 11px; color: var(--text-secondary); opacity: 0.6;">No spam. Your details are shared with the Tigremt Mining team only.</p>
         </div>
         <!-- Success state (hidden by default) -->
         <div id="emailSuccess" style="display: none; max-width: 420px; margin: 0 auto;">
@@ -686,12 +697,19 @@ updateNavigation();
 // Email gate for pitch deck download
 document.getElementById('deckForm').addEventListener('submit', async function(e) {
     e.preventDefault();
+    const firstName = document.getElementById('investorFirstName').value.trim();
+    const lastName = document.getElementById('investorLastName').value.trim();
+    const company = document.getElementById('investorCompany').value.trim();
     const email = document.getElementById('investorEmail').value.trim();
-    if (!email) return;
+    if (!firstName || !lastName || !company || !email) return;
 
+    const fullName = firstName + ' ' + lastName;
     const btn = this.querySelector('button[type="submit"]');
     btn.textContent = 'Sending...';
     btn.disabled = true;
+
+    const leadInfo = '👤 ' + fullName + '\n🏢 ' + company + '\n📧 ' + email;
+    const subject = '📥 Pitch Deck Download — ' + fullName + ' (' + company + ')';
 
     try {
         // Send to FormSubmit (forwards to Timothee's email)
@@ -699,9 +717,11 @@ document.getElementById('deckForm').addEventListener('submit', async function(e)
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({
+                name: fullName,
+                company: company,
                 email: email,
-                _subject: '📥 Pitch Deck Download — ' + email,
-                message: 'An investor (' + email + ') downloaded the Tigremt Mining pitch deck from tigremt-mining.com',
+                _subject: subject,
+                message: leadInfo + '\n\nDownloaded the Tigremt Mining pitch deck from tigremt-mining.com',
                 _template: 'table'
             })
         });
@@ -713,9 +733,11 @@ document.getElementById('deckForm').addEventListener('submit', async function(e)
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({
+                name: fullName,
+                company: company,
                 email: email,
-                _subject: '📥 Pitch Deck Download — ' + email,
-                message: 'An investor (' + email + ') downloaded the Tigremt Mining pitch deck from tigremt-mining.com',
+                _subject: subject,
+                message: leadInfo + '\n\nDownloaded the Tigremt Mining pitch deck from tigremt-mining.com',
                 _template: 'table'
             })
         });
@@ -723,7 +745,7 @@ document.getElementById('deckForm').addEventListener('submit', async function(e)
 
     // Store locally
     const leads = JSON.parse(localStorage.getItem('tigremt-leads') || '[]');
-    leads.push({ email, date: new Date().toISOString() });
+    leads.push({ firstName, lastName, company, email, date: new Date().toISOString() });
     localStorage.setItem('tigremt-leads', JSON.stringify(leads));
 
     // Show success & trigger download
